@@ -212,3 +212,49 @@ h1, h2, h3, h4, h5{
         height: 32px;
     }
 }
+/* Estilos para los cuadros de trabajos */
+.card-trabajo {
+    border-radius: 12px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+}
+
+/* Efecto al pasar el mouse por cada cuadro */
+.card-trabajo:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-trabajo .badge {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background-color: #003366 !important; /* Azul construcción */
+}
+
+/* 1. Evita que la imagen intercepte el clic y confunda al contenedor */
+.card-trabajo img {
+    pointer-events: none;
+}
+
+/* 2. Desactiva la elevación temporalmente mientras se hace clic */
+.card-trabajo:active, 
+.card-trabajo:focus-within {
+    transform: none !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 3. Si envolviste el cuadro en una etiqueta <a>, asegura el foco */
+a:focus .card-trabajo {
+    transform: none !important;
+}
+
+/* Estilo para que la imagen del modal se adapte completamente a la pantalla */
+.img-modal-completa {
+    max-height: 80vh;    /* No permite que la imagen pase del 80% del alto de la pantalla */
+    max-width: 100%;     /* Evita que se desborde horizontalmente */
+    width: auto;         /* Ajusta el ancho automáticamente manteniendo la proporción */
+    object-fit: contain; /* Fuerza a mostrar la imagen COMPLETA sin recortar nada */
+    display: block;
+    margin: 0 auto;      /* Centra la imagen horizontalmente en el fondo negro */
+}

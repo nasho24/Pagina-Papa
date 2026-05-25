@@ -29,71 +29,61 @@ background-position: center;">
     <h2 class="text-center mb-5 fw-bold">
         Lo que hacemos
     </h2>
-        <div class="row g-4 text-center">
-            <div class="col-md-3">
-                <a
-                    href="{% url 'categoria_detalle' 'ventanas' %}"
-                    class="text-decoration-none text-dark">
-            <div class="card h-100 p-3 shadow-sm border-0 servicio-card">
-                <h5>Ventanas</h5>
-                <p class="small text-muted">
-                    Fabricación e instalación de ventanas en aluminio y termopanel.
-                </p>
-            </div>
-                </a>
+    <div class="row g-4 text-center">
+        <div class="col-md-3">
+            <a href="{% url 'categoria_detalle' 'ventanas' %}" class="text-decoration-none text-dark">
+                <div class="card h-100 p-3 shadow-sm border-0 servicio-card">
+                    <h5>Ventanas</h5>
+                    <p class="small text-muted">
+                        Fabricación e instalación de ventanas en aluminio y termopanel.
+                    </p>
+                </div>
+            </a>
         </div>
         <div class="col-md-3">
-               <a
-                    href="{% url 'categoria_detalle' 'puertas' %}"
-                    class="text-decoration-none text-dark">
-            <div class="card h-100 p-3 shadow-sm border-0">
-                <h5>Puertas</h5>
-                <p class="small text-muted">
-                    Instalación completa de puertas de interior y exterior.
-                </p>
-            </div>
-                </a>
+            <a href="{% url 'categoria_detalle' 'puertas' %}" class="text-decoration-none text-dark">
+                <div class="card h-100 p-3 shadow-sm border-0">
+                    <h5>Puertas</h5>
+                    <p class="small text-muted">
+                        Instalación completa de puertas de interior y exterior.
+                    </p>
+                </div>
+            </a>
         </div>
         <div class="col-md-3">
-                <a
-                    href="{% url 'categoria_detalle' 'banos' %}"
-                    class="text-decoration-none text-dark">
-            <div class="card h-100 p-3 shadow-sm border-0">
-                <h5>Baños</h5>
-                <p class="small text-muted">
-                    Shower doors, muebles, inodoros y accesorios de baño.
-                </p>
-            </div>
-                </a>
+            <a href="{% url 'categoria_detalle' 'banos' %}" class="text-decoration-none text-dark">
+                <div class="card h-100 p-3 shadow-sm border-0">
+                    <h5>Baños</h5>
+                    <p class="small text-muted">
+                        Shower doors, muebles, inodoros y accesorios de baño.
+                    </p>
+                </div>
+            </a>
         </div>
         <div class="col-md-3">
-                <a
-                href="{% url 'categoria_detalle' 'terminaciones' %}"
-                class="text-decoration-none text-dark">
-            <div class="card h-100 p-3 shadow-sm border-0">
-                <h5>Terminaciones</h5>
-                <p class="small text-muted">
-                    Instalación experta de guardapolvos y acabados.
-                </p>
-            </div>
-                </a>
+            <a href="{% url 'categoria_detalle' 'terminaciones' %}" class="text-decoration-none text-dark">
+                <div class="card h-100 p-3 shadow-sm border-0">
+                    <h5>Terminaciones</h5>
+                    <p class="small text-muted">
+                        Instalación experta de guardapolvos y acabados.
+                    </p>
+                </div>
+            </a>
         </div>
     </div>
 </div>
 
 <div class="container my-5">
-
     <h2 class="text-center fw-bold mb-5">
         ¿Por qué elegirnos?
     </h2>
 
     <div class="row text-center g-4">
-
         <div class="col-md-4">
             <div class="card border-0 shadow-sm p-4 h-100">
                 <h5>Experiencia</h5>
                 <p class="text-muted">
-                    Años de experiencia en instalaciones y terminaciones.
+                    Años de experiencia en installations y terminaciones.
                 </p>
             </div>
         </div>
@@ -120,43 +110,66 @@ background-position: center;">
 
 <div class="bg-light py-5">
     <div class="container">
-        <h2 class="mb-4 fw-bold text-center">
+        <h2 class="mb-2 fw-bold text-center">
             Galería de Trabajos
         </h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <p class="text-center text-muted mb-5">
+            Cada cuadro representa un proyecto entregado con la máxima calidad.
+        </p>
+        
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             {% for p in proyectos %}
             <div class="col">
-                <div class="card h-100 shadow-sm border-0">
-                    {% if p.imagen %}
-                        <img
-                            src="{{ p.imagen.url }}"
-                            class="card-img-top"
-                            alt="{{ p.titulo }}"
-                            style="height: 250px; object-fit: cover;"
-                        >
-                    {% else %}
-                        <div class="bg-secondary text-white d-flex align-items-center justify-content-center"
-                        style="height: 250px;">
-                            Sin foto todavía
-                        </div>
-                    {% endif %}
-
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            {{ p.titulo }}
-                        </h5>
-                        <p class="card-text text-muted">
-                            {{ p.descripcion|truncatechars:100 }}
-                        </p>
+                <div class="card h-100 shadow-sm border-0 card-trabajo">
+                    
+                    <div style="height: 220px; overflow: hidden; background-color: #eaeaea; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                        {% if p.imagen %}
+                            <img 
+                                src="{{ p.imagen.url }}" 
+                                class="card-img-top w-100 h-100" 
+                                style="object-fit: cover;" 
+                                alt="{{ p.titulo }}"
+                            >
+                        {% else %}
+                            <div class="d-flex align-items-center justify-content-center h-100 text-muted">
+                                <span>📷 Sin foto todavía</span>
+                            </div>
+                        {% endif %}
                     </div>
+
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <span class="badge bg-secondary mb-2" style="font-size: 0.75rem; padding: 6px 10px; border-radius: 20px; background-color: #003366 !important;">
+                                {{ p.categoria.nombre }}
+                            </span>
+                            <h5 class="card-title fw-bold text-dark mb-1" style="font-size: 1.1rem;">
+                                {{ p.titulo }}
+                            </h5>
+                            <p class="card-text text-muted small">
+                                {{ p.descripcion|truncatechars:100 }}
+                            </p>
+                        </div>
+                        
+                        {% if p.fecha_finalizado %}
+                        <div class="border-top pt-2 mt-3 text-end">
+                            <small class="text-muted" style="font-size: 0.75rem;">
+                                {{ p.fecha_finalizado|date:"M Y" }}
+                            </small>
+                        </div>
+                        {% endif %}
+                    </div>
+
                 </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted fs-5">Aún no hay proyectos cargados. ¡Sube el primero en el panel de admin!</p>
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
 
-<!-- CONTACTO -->
 <div id="contacto" class="container my-5 py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
