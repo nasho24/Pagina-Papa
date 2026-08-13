@@ -26,8 +26,6 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-clave-temporal-desarrollo-
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = [
-    'nacho24.pythonanywhere.com',
-    'Nacho24.pythonanywhere.com',
     '127.0.0.1',
     'localhost',
 ]
@@ -138,19 +136,24 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
-# -----------------------------------------------------------------------------
-# CONFIGURACIONES DE SEGURIDAD EN PRODUCCIÓN (Activadas cuando DEBUG=False)
-# -----------------------------------------------------------------------------
+# ==============================================================================
+# CONFIGURACIÓN DE SEGURIDAD PARA PRODUCCIÓN
+# ==============================================================================
+# Todo este bloque solo se activará si en el archivo .env se configura DEBUG=False
 if not DEBUG:
-    # Protección de Cookies y Tráfico HTTPS
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = 'DENY'
+    # 1. Redirección obligatoria a HTTPS
     SECURE_SSL_REDIRECT = True 
+
+    # 2. Transmisión segura de Cookies (Solo mediante HTTPS)
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
-    # Cabeceras HSTS (HTTP Strict Transport Security)
-    SECURE_HSTS_SECONDS = 31536000  # 1 año
+    # 3. Protecciones de cabecera contra ataques comunes
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
+
+    # 4. Políticas HSTS (HTTP Strict Transport Security)
+    SECURE_HSTS_SECONDS = 31536000  # 1 año de forzado HTTPS
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
